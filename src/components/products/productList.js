@@ -7,6 +7,7 @@ function ProductList({ sortKey, page }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const baseURL = "https://db-1-45k6.onrender.com";
 
   useEffect(() => {
     async function fetchProducts() {
@@ -14,7 +15,7 @@ function ProductList({ sortKey, page }) {
         setLoading(true);
 
         const response = await fetch(
-          `http://localhost:8000/api/products?page=${page}&limit=10&sort=${sortKey}`
+          `${baseURL}/api/products?page=${page}&limit=10&sort=${sortKey}`
         );
 
         if (!response.ok) {
@@ -31,7 +32,7 @@ function ProductList({ sortKey, page }) {
     }
 
     fetchProducts();
-  }, [page, sortKey]);
+  }, [page, sortKey, baseURL]);
 
   if (loading) return <p>로딩 중...</p>;
   if (error) return <p>{error}</p>;

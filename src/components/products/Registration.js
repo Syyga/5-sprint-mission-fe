@@ -69,12 +69,15 @@ function Registration() {
     }
 
     try {
-      const response = await axios.post("http://localhost:8000/api/products", {
-        name: values.productName,
-        description: values.description,
-        price: values.price,
-        tags: tags, // 태그 리스트 전송
-      });
+      const response = await axios.post(
+        "https://db-1-45k6.onrender.com/api/products",
+        {
+          name: values.productName,
+          description: values.description,
+          price: values.price,
+          tags: tags, // 태그 리스트 전송
+        }
+      );
       alert("상품이 등록되었습니다.");
       console.log("등록된 상품:", response.data);
       navigate("/items");
